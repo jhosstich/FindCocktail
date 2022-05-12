@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { fetchSearchCocktail } from  "../../redux/action";
 import { useDispatch } from "react-redux";
 import './searchInput.scss';
+import Filters from "../filters/Filters";
 
 const SearchInput = () => {
 
@@ -16,8 +17,8 @@ const SearchInput = () => {
     };
 
     return (
-        <section className="section search">
-            <form className="search-form" onSubmit={handleSubmit}>
+        <section className="section search search-form">
+            <form  onSubmit={handleSubmit}>
                 <div className="form-control">
                     <label htmlFor="name">Search Cocktail</label>
                     <input
@@ -30,6 +31,7 @@ const SearchInput = () => {
                     />
                 </div>
             </form>
+            <Filters />
         </section>
     );
 }

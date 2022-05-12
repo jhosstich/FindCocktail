@@ -19,10 +19,6 @@ const ModalCocktail = (props) => {
         if(props.cocktailId) fetchCocktailById(props.cocktailId)
     }, [props.cocktailId]);
 
-    useEffect(() => {
-        if (cocktail) console.log({ cocktail })
-    }, [cocktail]);
-
     if (!cocktail) {
         return <></>
     }

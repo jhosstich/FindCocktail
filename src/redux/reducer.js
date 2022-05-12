@@ -45,6 +45,24 @@ const cocktailReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload,
             };
+
+        case types.FILTER_COCKTAILS_BY_CATEGORY_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case types.FILTER_COCKTAILS_BY_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                cocktails: action.payload,
+            };
+        case types.FILTER_COCKTAILS_BY_CATEGORY_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
         default:
             return state;
     }
