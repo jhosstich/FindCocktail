@@ -1,0 +1,37 @@
+.cocktail {
+    margin-bottom: 18px;
+    align-items: center;
+    img {
+        width: 110px;
+        border-radius: 15px;
+    }
+
+    .cocktail-info{
+        text-align: left;
+        span{
+            font-size: 14px;
+        }
+    }
+    .card-title{
+        color: #36314d;
+    }
+    p{
+       color: #72706e 
+    }
+
+    h6{
+        font-size: 0.85rem;
+        color : #e3784b;
+    }
+
+    hr{
+        width: 70%;
+    }
+
+    @media (max-width: 992px){
+        hr{
+            width: 100%;
+        }
+    
+    }
+}

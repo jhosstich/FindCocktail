@@ -1,0 +1,38 @@
+.close-modal{
+    color: #72706e;
+}
+img {
+    width: 110px;
+    border-radius: 15px;
+}
+.modal-body{
+    max-width: 400px;
+    
+    h6{
+        color : #e3784b;
+    }
+    p, .drink-data{
+        color: #504f4d 
+    }
+    .drink-data {
+        font-weight: 600;
+    }
+}
+
+.modal-footer{
+    .btn-secondary{
+        background-color: #36314d;
+        color:white;
+    }
+}
+
+.react-modal, .react-modal:focus-visible{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: white;
+    border-radius: 15px;
+    border:#36314d solid 1px !important;
+}
