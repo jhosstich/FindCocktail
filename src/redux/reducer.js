@@ -2,7 +2,6 @@ import * as types from './actionType';
 
 const initialState = {
     cocktails: [],
-    cocktail: [],
     loading: false,
     error: null
 };
@@ -62,6 +61,61 @@ const cocktailReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload,
+            };
+
+        case types.FILTER_COCKTAILS_BY_INGREDIENT_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case types.FILTER_COCKTAILS_BY_INGREDIENT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+
+            };
+        case types.FILTER_COCKTAILS_BY_INGREDIENT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                cocktails: action.payload,
+            };
+        case types.FILTER_COCKTAILS_BY_ALCOHOL_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case types.FILTER_COCKTAILS_BY_ALCOHOL_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+
+            };
+        case types.FILTER_COCKTAILS_BY_ALCOHOL_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                cocktails: action.payload,
+            };
+        case types.FILTER_COCKTAILS_BY_NON_ALCOHOL_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case types.FILTER_COCKTAILS_BY_NON_ALCOHOL_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+
+            };
+        case types.FILTER_COCKTAILS_BY_NON_ALCOHOL_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                cocktails: action.payload,
             };
         default:
             return state;

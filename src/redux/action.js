@@ -52,7 +52,55 @@ const fetchFilterCocktailByCategoryFail = (error) => ({
     payload: error,
 });
 
-//get cocktails List
+//get data from ingredient filter
+const fetchFilterCocktailByIngredientStart = () => ({
+    type: types.FILTER_COCKTAILS_BY_INGREDIENT_START,
+});
+
+const fetchFilterCocktailByIngredientSuccess = (cocktails) => ({
+    type: types.FILTER_COCKTAILS_BY_INGREDIENT_SUCCESS,
+    payload: cocktails,
+});
+
+const fetchFilterCocktailByIngredientFail = (error) => ({
+    type: types.FILTER_COCKTAILS_BY_INGREDIENT_FAIL,
+    payload: error,
+});
+
+/***
+ * Get cocktails with alcohol
+ */
+const fetchFilterCocktailByAlcoholStart = () => ({
+    type: types.FILTER_COCKTAILS_BY_ALCOHOL_START,
+});
+
+const fetchFilterCocktailByAlcoholSuccess = (cocktails) => ({
+    type: types.FILTER_COCKTAILS_BY_ALCOHOL_SUCCESS,
+    payload: cocktails,
+});
+
+const fetchFilterCocktailByAlcoholFail = (error) => ({
+    type: types.FILTER_COCKTAILS_BY_ALCOHOL_FAIL,
+    payload: error,
+});
+
+/***
+ * Get cocktails with non alcohol
+ */
+ const fetchFilterCocktailByNonAlcoholStart = () => ({
+    type: types.FILTER_COCKTAILS_BY_NON_ALCOHOL_START,
+});
+
+const fetchFilterCocktailByNonAlcoholSuccess = (cocktails) => ({
+    type: types.FILTER_COCKTAILS_BY_NON_ALCOHOL_SUCCESS,
+    payload: cocktails,
+});
+
+const fetchFilterCocktailByNonAlcoholFail = (error) => ({
+    type: types.FILTER_COCKTAILS_BY_NON_ALCOHOL_FAIL,
+    payload: error,
+});
+
 export function fetchCocktails() {
     return function (dispatch) {
         dispatch(fetchCocktailsStart());
@@ -77,7 +125,7 @@ export function fetchSearchCocktail(searchText) {
             )
             .then((response) => {
                 const cocktails = response.data.drinks;
-                console.log({cocktails})
+                console.log({ cocktails })
                 dispatch(fetchSearchCocktailSuccess(cocktails));
             })
             .catch((error) => {
@@ -99,6 +147,58 @@ export function fetchFilterByCategory(category) {
             })
             .catch((error) => {
                 dispatch(fetchFilterCocktailByCategoryFail(error));
+            });
+    };
+}
+
+export function fetchFilterByIngredient(ingredient) {
+    return function (dispatch) {
+        dispatch(fetchFilterCocktailByIngredientStart());
+        axios
+            .get(
+                `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
+            )
+            .then((response) => {
+                const cocktails = response.data.drinks;
+                console.log('filter by ingredient ', { cocktails })
+                dispatch(fetchFilterCocktailByIngredientSuccess(cocktails));
+            })
+            .catch((error) => {
+                dispatch(fetchFilterCocktailByIngredientFail(error));
+            });
+    };
+}
+
+export function fetchCocktailsByAlcohol() {
+    console.log('filter by Alcohol')
+    return function (dispatch) {
+        dispatch(fetchFilterCocktailByAlcoholStart());
+        axios
+            .get( `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`)
+            .then((response) => {
+                const cocktails = response.data.drinks;
+                console.log({cocktails}, 'Alcohol')
+                dispatch(fetchFilterCocktailByAlcoholSuccess(cocktails));
+            })
+            .catch((error) => {
+                dispatch(fetchFilterCocktailByAlcoholFail(error));
+            });
+    };
+}
+
+export function fetchCocktailsByNonAlcohol() {
+    console.log('filter by Alcohol')
+    return function (dispatch) {
+        dispatch(fetchFilterCocktailByNonAlcoholStart());
+        axios
+            .get( `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`)
+            .then((response) => {
+                const cocktails = response.data.drinks;
+                console.log({cocktails}, 'Alcohol')
+                dispatch(fetchFilterCocktailByNonAlcoholSuccess(cocktails));
+            })
+            .catch((error) => {
+                dispatch(fetchFilterCocktailByNonAlcoholFail(error));
             });
     };
 }
